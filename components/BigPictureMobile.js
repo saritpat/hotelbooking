@@ -19,6 +19,7 @@ const BigPictureMobile = () => {
                     src={"/logo.svg"}
                     width={30}
                     height={34}
+                    className="w-auto"
                     alt="logo"
                 />
             </div>

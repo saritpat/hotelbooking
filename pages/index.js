@@ -23,7 +23,9 @@ export default function Home() {
     useEffect(() => {
         async function fetch() {
             try {
-                const response = await axios.get("../api/hotels");
+                const response = await axios.get(
+                    "http://localhost:8000/api/hotels"
+                );
                 console.log(response.data);
                 setRecent(response.data.slice(5, 10));
             } catch (error) {
@@ -46,19 +48,29 @@ export default function Home() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const searchParams = new URLSearchParams();
-        if (query.location.trim()) {
-            searchParams.append("location", query.location);
-        }
-        searchParams.append("checkIn", query.checkIn);
-        searchParams.append("checkOut", query.checkOut);
-        searchParams.append("room", query.room);
+        if (!query.location) {
+            alert("Please enter Location");
+        } else if (!query.checkIn) {
+            alert("Please enter Check In Date");
+        } else if (!query.checkOut) {
+            alert("Please enter Check Out Date");
+        } else if (!query.room) {
+            alert("Please enter Guest and room");
+        } else {
+            const searchParams = new URLSearchParams();
+            if (query.location.trim()) {
+                searchParams.append("location", query.location);
+            }
+            searchParams.append("checkIn", query.checkIn);
+            searchParams.append("checkOut", query.checkOut);
+            searchParams.append("room", query.room);
 
-        console.log("searchParams = ", searchParams);
-        router.push(`/hotels?${searchParams.toString()}`);
+            console.log("searchParams = ", searchParams);
+            router.push(`/hotels?${searchParams.toString()}`);
+        }
     };
 
-    console.log(query);
+    // console.log(query);
 
     return (
         <div>
@@ -84,9 +96,10 @@ export default function Home() {
                                 <Link href={"/"}>
                                     <div className="bg-[#2D3DDF] w-[58px] h-[58px] rounded-full flex justify-center shadow-[rgba(0,0,0,0.5)_5px_5px_15px_0px]">
                                         <Image
-                                            src={"/review.svg"}
+                                            src="/review.svg"
                                             width={36}
                                             height={24}
+                                            className="h-auto"
                                             alt="hotel"
                                         />
                                     </div>
@@ -100,6 +113,7 @@ export default function Home() {
                                             src={"/plane.svg"}
                                             width={36}
                                             height={24}
+                                            className="h-auto"
                                             alt="plane"
                                         />
                                     </div>
@@ -113,6 +127,7 @@ export default function Home() {
                                             src={"/car.svg"}
                                             width={36}
                                             height={24}
+                                            className="h-auto"
                                             alt="car"
                                         />
                                     </div>
@@ -129,7 +144,7 @@ export default function Home() {
                                     id="location"
                                     value={query.location}
                                     className="sm:w-[700px] w-full sm:h-[56px] h-11 border border-[#BEC3FF] rounded-md px-5 mb-[7px] focus:ring-1 focus:outline-none focus:ring-primary"
-                                    placeholder="Location"
+                                    placeholder="Location (ex. Chicago, Bangkok)"
                                     onChange={handleInputChange}
                                     required
                                 />
@@ -158,7 +173,7 @@ export default function Home() {
                                     id="room"
                                     value={query.room}
                                     className="sm:w-[700px] w-full sm:h-[56px] h-11 border border-[#BEC3FF] rounded-md px-5 focus:ring-1 focus:outline-none focus:ring-primary"
-                                    placeholder="1 adult, 1 children - 1 room"
+                                    placeholder="Guest - room (ex. 1 adult, 1 children - 1 room)"
                                     onChange={handleInputChange}
                                     required
                                 />
@@ -175,7 +190,13 @@ export default function Home() {
                         </div>
                     </div>
                     <div className="mt-[42px]">
-                        <HotelList data={recent} />
+                        <HotelList
+                            data={recent}
+                            location={query.location}
+                            checkIn={query.checkIn}
+                            checkOut={query.checkOut}
+                            room={query.room}
+                        />
                     </div>
                 </div>
 
