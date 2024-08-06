@@ -4,7 +4,7 @@ import React, { useState } from "react";
 
 const Navbar = () => {
     const [isHovered, setIsHovered] = useState("");
-    const [isSelected, setSelected] = useState("");
+    const [isSelected, setSelected] = useState("search");
 
     return (
         <nav className="sm:grid grid-rows-5 text-white items-center justify-center sm:h-full h-1/8 sm:w-[157px] w-full sm:left-0 left-auto sm:top-0 top-auto bottom-0 bg-primary fixed sm:overflow-x-hidden overflow-x-auto sm:rounded-r-3xl sm:rounded-tl-none rounded-t-3xl z-10">
@@ -14,6 +14,7 @@ const Navbar = () => {
                         src={"/logo.svg"}
                         width={30}
                         height={30}
+                        className="w-auto"
                         alt="logo"
                     />
                 </Link>
@@ -31,6 +32,7 @@ const Navbar = () => {
                                     src={"/home-hover.svg"}
                                     width={20}
                                     height={20}
+                                    className="w-auto"
                                     alt="home"
                                 />
                             </div>
@@ -51,6 +53,7 @@ const Navbar = () => {
                                         src={"/home-hover.svg"}
                                         width={20}
                                         height={20}
+                                        className="w-auto"
                                         alt="home"
                                     />
                                 ) : (
@@ -58,6 +61,7 @@ const Navbar = () => {
                                         src={"/home.svg"}
                                         width={20}
                                         height={20}
+                                        className="w-auto"
                                         alt="home"
                                     />
                                 )}
@@ -78,6 +82,7 @@ const Navbar = () => {
                                     src={"/search-hover.svg"}
                                     width={20}
                                     height={20}
+                                    className="w-auto"
                                     alt="search"
                                 />
                             </div>
@@ -98,6 +103,7 @@ const Navbar = () => {
                                         src={"/search-hover.svg"}
                                         width={20}
                                         height={20}
+                                        className="w-auto"
                                         alt="search"
                                     />
                                 ) : (
@@ -105,6 +111,7 @@ const Navbar = () => {
                                         src={"/search.svg"}
                                         width={20}
                                         height={20}
+                                        className="w-auto"
                                         alt="search"
                                     />
                                 )}
@@ -125,6 +132,7 @@ const Navbar = () => {
                                     src={"/heart-hover.svg"}
                                     width={20}
                                     height={20}
+                                    className="w-auto"
                                     alt="trips"
                                 />
                             </div>
@@ -145,6 +153,7 @@ const Navbar = () => {
                                         src={"/heart-hover.svg"}
                                         width={20}
                                         height={20}
+                                        className="w-auto"
                                         alt="trips"
                                     />
                                 ) : (
@@ -152,6 +161,7 @@ const Navbar = () => {
                                         src={"/heart.svg"}
                                         width={20}
                                         height={20}
+                                        className="w-auto"
                                         alt="trips"
                                     />
                                 )}
@@ -172,6 +182,7 @@ const Navbar = () => {
                                     src={"/user-hover.svg"}
                                     width={20}
                                     height={20}
+                                    className="w-auto"
                                     alt="profile"
                                 />
                             </div>
@@ -192,6 +203,7 @@ const Navbar = () => {
                                         src={"/user-hover.svg"}
                                         width={20}
                                         height={20}
+                                        className="w-auto"
                                         alt="profile"
                                     />
                                 ) : (
@@ -199,6 +211,7 @@ const Navbar = () => {
                                         src={"/user.svg"}
                                         width={20}
                                         height={20}
+                                        className="w-auto"
                                         alt="profile"
                                     />
                                 )}

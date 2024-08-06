@@ -20,7 +20,7 @@ const Home = () => {
                             Hotel Booking
                         </h1>
                         <p className="sm:text-[24px] text-base text-200 mb-8 w-3/4">
-                            Best hotel booking website in this world.
+                            My first hotel booking website !
                         </p>
 
                         <Link
@@ -32,11 +32,12 @@ const Home = () => {
                     </div>
                     <div className="w-2/5 sm:flex justify-center items-center hidden">
                         <Image
-                            src={"/hotel-picture/h13.png"}
+                            src={"/hotel-picture/h9.png"}
                             width={0}
                             height={0}
                             sizes="100vw"
                             className="w-full h-full rounded-full"
+                            alt="start picture"
                         />
                     </div>
                 </div>

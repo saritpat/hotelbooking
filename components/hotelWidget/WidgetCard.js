@@ -27,7 +27,7 @@ const WidgetCard = ({ id, name, city, price, picture, searchParam }) => {
                     <p className="text-[20px] font-medium">
                         {name}, {city}
                     </p>
-                    <p>Price starts from ฿ {price}</p>
+                    <p>Price starts from ฿ {price[1]}</p>
                 </div>
                 <button
                     onClick={handleOnClick}

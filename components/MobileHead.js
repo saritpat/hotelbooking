@@ -12,10 +12,18 @@ const MobileHead = ({ name }) => {
     return (
         <div>
             <div className="relative flex items-center py-3 px-2 text-[16px] font-semibold">
-                <button onClick={back} className="absolut left-0">
-                    <Image src={"/back-mobile.svg"} width={32} height={32} />
+                <button onClick={back}>
+                    <Image
+                        src={"/back-mobile.svg"}
+                        width={32}
+                        height={32}
+                        className="w-auto"
+                        alt="back button"
+                    />
                 </button>
-                <div className="flex-grow text-center col-span-3 pr-8">{name}</div>
+                <div className="flex-grow text-center col-span-3 pr-8">
+                    {name}
+                </div>
                 <div></div>
             </div>
         </div>

@@ -6,21 +6,30 @@ const RoomCard = ({ id, price, searchParam, type }) => {
     const router = useRouter();
 
     const handleOnClick = () => {
-        searchParam.roomType = type;
-        searchParam.room_rate = price;
-        searchParam.people = 2;
+        if (!searchParam.location) {
+            alert("Please enter Location");
+        } else if (!searchParam.checkIn) {
+            alert("Please enter Check In Date");
+        } else if (!searchParam.checkOut) {
+            alert("Please enter Check Out Date");
+        } else if (!searchParam.room) {
+            alert("Please enter Guest and room");
+        } else {
+            searchParam.roomType = type;
+            searchParam.room_rate = price;
 
-        router.push({
-            pathname: `/review-hotel/${id}`,
-            query: searchParam,
-        });
+            router.push({
+                pathname: `/review-hotel/${id}`,
+                query: searchParam,
+            });
+        }
     };
 
     return (
         <div className="flex sm:flex-row flex-col border border-[#D1D1D1] sm:rounded rounded-t sm:h-[173px] sm:gap-2">
             <div>
                 <Image
-                    src={"/hotel-picture/h10.png"}
+                    src={"/hotel-picture/h7.png"}
                     width={0}
                     height={0}
                     sizes="100vw"

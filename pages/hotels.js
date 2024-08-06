@@ -23,7 +23,7 @@ const Hotels = () => {
     // fetch all hotel + slice (5) for reccommend
     useEffect(() => {
         try {
-            fetch("/api/hotels")
+            fetch("http://localhost:8000/api/hotels")
                 .then((response) => response.json())
                 .then((data) => {
                     setReccommendHotel(data.slice(0, 5));
@@ -37,7 +37,7 @@ const Hotels = () => {
     useEffect(() => {
         const searchParams = new URLSearchParams({ location });
         try {
-            fetch(`/api/search?${searchParams.toString()}`)
+            fetch(`http://localhost:8000/api/search?${searchParams.toString()}`)
                 .then((response) => response.json())
                 .then((data) => setResults(data));
         } catch (error) {
@@ -45,7 +45,7 @@ const Hotels = () => {
         }
     }, [location]);
 
-    console.log(searchParam);
+    // console.log(searchParam);
 
     return (
         <div className="sm:mt-10 sm:ml-8 sm:mb-0 mb-20">
@@ -56,7 +56,7 @@ const Hotels = () => {
                     content="width=device-width, initial-scale=1.0"
                 />
             </Head>
-            <div className="sm:w-3/4 w-full sm:pl-0 sm:pr-0 pr-6 pl-6">
+            <div className="sm:w-3/4 w-full sm:pt-0 pt-12 sm:pl-0 sm:pr-0 pr-6 pl-6">
                 <div className="sm:flex">
                     <div className="sm:block hidden">
                         <BackButton />

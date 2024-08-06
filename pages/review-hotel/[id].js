@@ -42,7 +42,9 @@ const ReviewHotel = () => {
     useEffect(() => {
         async function fetch() {
             try {
-                const response = await axios.get(`../api/hotels/${id}`);
+                const response = await axios.get(
+                    `http://localhost:8000/api/hotels/${id}`
+                );
                 console.log(response.data);
                 setHotelData(response.data);
             } catch (error) {
@@ -63,7 +65,7 @@ const ReviewHotel = () => {
             room,
         });
         try {
-            fetch(`/api/price?${params.toString()}`)
+            fetch(`http://localhost:8000/api/price?${params.toString()}`)
                 .then((response) => response.json())
                 .then((data) => setPrice(data));
         } catch (error) {
@@ -71,10 +73,10 @@ const ReviewHotel = () => {
         }
     }, []);
 
-    console.log("price", price);
+    // console.log("price", price);
 
     // console.log("data", hotelData);
-    console.log("search", searchParam);
+    // console.log("search", searchParam);
 
     const handleGuestChange = (event) => {
         const { id, value } = event.target;
@@ -134,7 +136,8 @@ const ReviewHotel = () => {
         console.log("searchParams = ", searchParams);
         router.push(`/hotels?${searchParams.toString()}`);
     };
-    console.log(search);
+
+    // console.log(search);
 
     return (
         <div>
@@ -162,8 +165,8 @@ const ReviewHotel = () => {
                     <input
                         type="text"
                         id="location"
-                        className="sm:w-auto w-full sm:h-[62px] h-12 border border-[#BEC3FF] rounded-md px-5 focus:ring-1 focus:outline-none focus:ring-primary"
-                        placeholder="Location"
+                        className="sm:w-auto w-full sm:h-[62px] h-12 border border-[#BEC3FF] rounded-md px-5 focus:ring-1 focus:outline-none"
+                        placeholder="Location (ex. Chicago, Bangkok)"
                         onChange={handleSearchChange}
                         value={search.location}
                         required
@@ -172,27 +175,30 @@ const ReviewHotel = () => {
                         <input
                             type="date"
                             id="checkIn"
-                            className="w-1/2 sm:h-[62px] h-12 border border-[#BEC3FF] rounded-l-md px-5 focus:ring-1 focus:outline-none focus:ring-primary"
+                            className="w-1/2 sm:h-[62px] h-12 bg-blue-100 cursor-not-allowed border border-[#BEC3FF] rounded-l-md px-5 focus:ring-1 focus:outline-none"
                             placeholder="From"
                             onChange={handleSearchChange}
                             value={search.checkIn}
+                            readOnly="readOnly"
                         />
                         <input
                             type="date"
                             id="checkOut"
-                            className="w-1/2 sm:h-[62px] h-12 border border-[#BEC3FF] rounded-r-md px-5 focus:ring-1 focus:outline-none focus:ring-primary"
+                            className="w-1/2 sm:h-[62px] h-12 bg-blue-100 cursor-not-allowed border border-[#BEC3FF] rounded-r-md px-5 focus:ring-1 focus:outline-none"
                             placeholder="To"
                             onChange={handleSearchChange}
                             value={search.checkOut}
+                            readOnly="readOnly"
                         />
                     </div>
                     <input
                         type="text"
                         id="room"
-                        className="sm:w-auto w-full sm:h-[62px] h-12 border border-[#BEC3FF] rounded-md px-5 focus:ring-1 focus:outline-none focus:ring-primary"
-                        placeholder="1 adult, 1 children - 1 room"
+                        className="sm:w-auto w-full sm:h-[62px] h-12 bg-blue-100 cursor-not-allowed border border-[#BEC3FF] rounded-md px-5 focus:ring-1 focus:outline-none focus:ring-primary"
+                        placeholder="Guest - room (ex. 1 adult, 1 children - 1 room)"
                         onChange={handleSearchChange}
                         value={search.room}
+                        readOnly="readOnly"
                     />
                     <button
                         onClick={handleSearch}
@@ -218,6 +224,7 @@ const ReviewHotel = () => {
                                         src={"/rating.svg"}
                                         width={150}
                                         height={31}
+                                        className="w-auto"
                                         alt="rating"
                                     />
                                 </div>
@@ -409,9 +416,9 @@ const ReviewHotel = () => {
                                         </div>
                                     )}
                                 </div>
-                                <button className="my-3 col-span-2 flex justify-start pl-5">
+                                <div className="my-3 col-span-2 flex justify-start pl-5">
                                     Add Guest +
-                                </button>
+                                </div>
                                 <div className="col-span-5">
                                     <div>Special Request(optional)</div>
                                     <textarea

@@ -81,15 +81,15 @@ export default function Price(req, res) {
         price: price.toFixed(2),
         totalPrice: totalPrice.toFixed(2),
     });
-    console.log(
-        "nights:",
-        nights,
-        "people - room:",
-        result,
-        vat.toFixed(2),
-        "price:",
-        price.toFixed(2),
-        "totalPrice:",
-        totalPrice.toFixed(2)
-    );
+    // console.log(
+    //     "nights:",
+    //     nights,
+    //     "people - room:",
+    //     result,
+    //     vat.toFixed(2),
+    //     "price:",
+    //     price.toFixed(2),
+    //     "totalPrice:",
+    //     totalPrice.toFixed(2)
+    // );
 }

@@ -2,18 +2,42 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import React from "react";
 
-const HotelCard = ({ name, picture, rating, roomRate }) => {
+const HotelCard = ({
+    id,
+    name,
+    picture,
+    rating,
+    roomRate,
+    location,
+    checkIn,
+    checkOut,
+    room,
+}) => {
     const router = useRouter();
 
-    const handleOnClick = () => {
-        // searchParam.roomType = type;
-        // searchParam.room_rate = price;
-        // searchParam.people = 2;
+    const handleOnClick = (e) => {
+        e.preventDefault();
 
-        // router.push({
-        //     pathname: `/review-hotel/${id}`,
-        //     query: searchParam,
-        // });
+        if (!location) {
+            alert("Please enter Location");
+        } else if (!checkIn) {
+            alert("Please enter Check In Date");
+        } else if (!checkOut) {
+            alert("Please enter Check Out Date");
+        } else if (!room) {
+            alert("Please enter Guest and room");
+        } else {
+            const searchParams = new URLSearchParams();
+            if (location.trim()) {
+                searchParams.append("location", location);
+            }
+            searchParams.append("checkIn", checkIn);
+            searchParams.append("checkOut", checkOut);
+            searchParams.append("room", room);
+
+            console.log("searchParams = ", searchParams);
+            router.push(`/explore-hotel/${id}?${searchParams.toString()}`);
+        }
     };
 
     return (
@@ -30,15 +54,21 @@ const HotelCard = ({ name, picture, rating, roomRate }) => {
             </div>
             <div className="sm:pl-8 px-3 sm:py-[8px]">
                 <div>{name}</div>
-                <Image src={"/rating.svg"} width={80} height={12} alt="rating" />
+                <Image
+                    src={"/rating.svg"}
+                    width={80}
+                    height={12}
+                    className="w-auto"
+                    alt="rating"
+                />
                 <div className="flex items-center">
                     <div className="flex my-1 items-center text-white text-[12px] bg-[#FF6969] px-4 py-1 rounded-full mr-4">
                         <Image
                             src={"/white-star.svg"}
                             width={12}
                             height={12}
-                            alt="star"
                             className="pb-1"
+                            alt="star"
                         />
                         {rating}
                     </div>
@@ -47,9 +77,15 @@ const HotelCard = ({ name, picture, rating, roomRate }) => {
                     </div>
                 </div>
                 <div className="text-[14px] text-[#A8A8A8]">Amenities</div>
-                <Image src={"/amenities.svg"} width={200} height={20} />
+                <Image
+                    src={"/amenities.svg"}
+                    width={200}
+                    height={20}
+                    className="h-auto"
+                    alt="amenities"
+                />
                 <div className="text-primary font-medium text-base">
-                    {roomRate}/night
+                    {roomRate[1]}/night
                 </div>
             </div>
             <button
